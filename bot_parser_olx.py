@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import telebot
+import time
 
 def all_page_link():
     url = 'https://www.olx.kz/d/semey/q-айфон/?search%5Border%5D=created_at:desc'
@@ -41,6 +42,7 @@ def parser():
         # print(title,price,description,id_,time_public)
         yield all_text
         print(all_text)
+        time.sleep(2)
 
 # for i in list(parser()):
 #     print(i)
