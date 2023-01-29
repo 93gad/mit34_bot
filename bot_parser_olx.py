@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import time
-import telebot
-import time
+import logging
+from aiogram import Bot, Dispatcher, executor, types
 
 def all_page_link():
     url = 'https://www.olx.kz/d/semey/q-айфон/?search%5Border%5D=created_at:desc'
@@ -42,17 +42,24 @@ def parser():
         # print(title,price,description,id_,time_public)
         yield all_text
         print(all_text)
-        time.sleep(2)
 
 # for i in list(parser()):
 #     print(i)
-API_KEY = '6025497207:AAHGdB2jeR0YMpowKuiarAvSHpHYuz3sYbA'
-bot = telebot.TeleBot(API_KEY)
+API_TOKEN = '6025497207:AAHGdB2jeR0YMpowKuiarAvSHpHYuz3sYbA'
 
-@bot.message_handler(commands=['start'])
 
-def hello(message):
+logging.basicConfig(level=logging.INFO)
+
+bot = Bot(token=API_TOKEN)
+dp = Dispatcher(bot)
+
+@dp.message_handler(commands=['start'])
+async def send_welcome(message: types.Message):
+    """
+    This handler will be called when user sends `/start` or `/help` command
+    """
     for i in parser():
-        bot.send_message(message.chat.id, i)
+        await message.reply(i)
 
-bot.polling()
+if __name__ == '__main__':
+    executor.start_polling(dp, skip_updates=True)
