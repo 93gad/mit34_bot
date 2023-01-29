@@ -1,3 +1,4 @@
-cowpy
-teleflask
-flask
+equests
+lxml
+bs4
+aiogram
