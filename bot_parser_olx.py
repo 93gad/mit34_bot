@@ -4,6 +4,8 @@ import time
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 
+
+
 def all_page_link():
     url = 'https://www.olx.kz/d/semey/q-айфон/?search%5Border%5D=created_at:desc'
     req = requests.get(url)
@@ -52,14 +54,14 @@ logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+while True:
+    @dp.message_handler(commands=['start'])
+    async def send_welcome(message: types.Message):
+        """
+        This handler will be called when user sends `/start` or `/help` command
+        """
+        for i in parser():
+            await message.reply(i)
 
-@dp.message_handler(commands=['start'])
-async def send_welcome(message: types.Message):
-    """
-    This handler will be called when user sends `/start` or `/help` command
-    """
-    for i in parser():
-        await message.reply(i)
-
-if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    if __name__ == '__main__':
+        executor.start_polling(dp, skip_updates=True)
