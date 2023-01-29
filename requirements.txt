@@ -1,4 +1,4 @@
-equests
+requests
 lxml
 bs4
 aiogram
