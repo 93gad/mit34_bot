@@ -12,15 +12,13 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup()
-    button_1 = "/start"
+    button_1 = "/help"
     keyboard.add(button_1)
-    button_2 = "/help"
-    keyboard.add(button_2)
-    await message.answer("Чем могу помочь?", reply_markup=keyboard)
+    await message.answer("Чем я вам могу помочь?", reply_markup=keyboard)
 
 @dp.message_handler(commands=['help'])
 async def cmd_start(message: types.Message):
-    await message.answer('Hello')
+    await message.answer('Бот временно работает ведутся технические работы')
 
 async def main():
     await dp.start_polling(bot)
