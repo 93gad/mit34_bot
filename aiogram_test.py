@@ -18,7 +18,7 @@ async def cmd_start(message: types.Message):
 
 @dp.message_handler(commands=['help'])
 async def cmd_start(message: types.Message):
-    await message.answer('Бот временно работает ведутся технические работы')
+    await message.answer('Бот временно не работает ведутся технические работы')
 
 async def main():
     await dp.start_polling(bot)
