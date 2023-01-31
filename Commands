@@ -1,2 +1,0 @@
-docker build -t bots/telegram .
-docker run -h telegram --name telegram -d bots/telegram
